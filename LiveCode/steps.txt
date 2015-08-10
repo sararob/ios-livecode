@@ -1,0 +1,25 @@
+0. import Firebase -> add to top of file
+
+1. Create Firebase reference
+
+var ref = Firebase(url: "https://swift-boston.firebaseio.com/messages")
+
+2. Remove from addMessage function:
+
+self.messages.append(newMsg)
+self.tableView.reloadData()
+
+3. Write to Firebase in addMessage:
+
+let newMsgRef = self.ref.childByAutoId()
+newMsgRef.setValue(newMsg)
+
+4. Add a .ChildAdded callback in ViewDidAppear:
+
+ref.observeEventType(.ChildAdded, withBlock: { snapshot in
+    let msgData: AnyObject? = snapshot.value
+    let newMsg = ["name": msgData?.objectForKey("name") as! String, "text": msgData?.objectForKey("text") as! String]
+    self.messages.append(newMsg)
+    self.tableView.reloadData()
+})
+
