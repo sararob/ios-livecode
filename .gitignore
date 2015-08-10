@@ -15,3 +15,5 @@ DerivedData
 *.ipa
 *.xcuserstate
 *.xcworkspace
+Podfile.lock
+Pods
