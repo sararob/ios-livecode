@@ -17,3 +17,4 @@ DerivedData
 *.xcworkspace
 Podfile.lock
 Pods
+steps.txt
